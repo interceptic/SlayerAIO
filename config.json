@@ -1,0 +1,58 @@
+{
+    "igns": [
+        "YOUR_MINECRAFT_ACCOUNT_HERE"
+    ],
+    "webhooks": [
+        "YOUR_DISCORD_WEBHOOK_HERE"
+    ],
+    "binmaster": {
+        "keys": [
+            "YOUR_BINMASTER_KEY_HERE"
+        ],
+        "ports": [
+            6969
+        ],
+        "operating_system": "LINUX/WINDOWS/MACOS"
+    },
+    "configuration": {
+        "restart_time": 179,
+        "off_time": 61
+    },
+    "bot": {
+        "token": "YOUR_BOT_TOKEN_HERE",
+        "channel":  123,
+        "your_id": 123
+    },
+    "slayer": {
+        "tier": [
+            1
+
+        ],
+        "boss": [
+            "YOUR_SLAYER_BOSS_HERE"
+        ],
+        "autofarm": [
+            true
+        ],
+        "autoslayer": [
+            false
+        ]
+    },
+    "proxy": {
+        "enabled": [
+            false
+        ],
+        "ips": [
+            "127.0.0.1"
+        ],
+        "ports":  [
+            6969
+        ],
+        "usernames":  [
+            "proxy_username_here"
+        ],
+        "passwords": [
+            "proxy_password_here"
+        ]
+    }
+}
