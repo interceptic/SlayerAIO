@@ -16,7 +16,8 @@
     },
     "configuration": {
         "restart_time": 179,
-        "off_time": 61
+        "off_time": 61,
+        "monitor_output_manually": true
     },
     "bot": {
         "token": "YOUR_BOT_TOKEN_HERE",

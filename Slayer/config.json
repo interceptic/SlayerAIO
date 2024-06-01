@@ -108,7 +108,7 @@
         "proxy": {
             "enabled": false,
             "ip": "",
-            "port": ,
+            "port": 0,
             "username": "",
             "password": ""
         }

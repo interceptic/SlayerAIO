@@ -50,24 +50,37 @@ async def process_handler(username, on):
         if enabled == True:    
             with open("Slayer/config.json", "w") as dumps:
                 json.dump(config, dumps, indent=4)
-            
-            if data['binmaster']['operating_system'].lower() == 'windows':
-                # Get the directory of the current script
-                script_dir = os.path.dirname(os.path.abspath(__file__))
-                process_slayer_path = os.path.join(script_dir, '/Slayer')
-                exe_path = os.path.join(process_slayer_path, "binmaster-slayer-win.exe")
-                if os.path.isfile(exe_path):
-                    process = subprocess.Popen([exe_path], cwd=process_slayer_path, creationflags=subprocess.CREATE_NEW_PROCESS_GROUP, stdout=subprocess.PIPE, 
-            stderr=subprocess.PIPE, 
-            stdin=subprocess.PIPE, 
-            text=True,)
+            if data['configuration']['monitor_output_manually'] == 'false':
+                if data['binmaster']['operating_system'].lower() == 'windows':
+                    # Get the directory of the current script
+                    script_dir = os.path.dirname(os.path.abspath(__file__))
+                    process_slayer_path = os.path.join(script_dir, '/Slayer')
+                    exe_path = os.path.join(process_slayer_path, "binmaster-slayer-win.exe")
+                    if os.path.isfile(exe_path):
+                        process = subprocess.Popen([exe_path], cwd=process_slayer_path, creationflags=subprocess.CREATE_NEW_PROCESS_GROUP, stdout=subprocess.PIPE, 
+                stderr=subprocess.PIPE, 
+                stdin=subprocess.PIPE, 
+                text=True,)
+                    else:
+                        print('error not path')
                 else:
-                    print('error not path')
-            else:
-                process = subprocess.Popen([f"./binmaster-slayer-{data['binmaster']['operating_system']}"], cwd='Slayer/', stdout=subprocess.PIPE, stderr=subprocess.PIPE,stdin=subprocess.PIPE, text=True, preexec_fn=os.setsid)
-            
-            task = asyncio.create_task(handle_output(process, ign, webhook))
-            async_tasks[f'{ign}'] = task
+                    process = subprocess.Popen([f"./binmaster-slayer-{data['binmaster']['operating_system']}"], cwd='Slayer/', stdout=subprocess.PIPE, stderr=subprocess.PIPE,stdin=subprocess.PIPE, text=True, preexec_fn=os.setsid)
+                task = asyncio.create_task(handle_output(process, ign, webhook))
+                async_tasks[f'{ign}'] = task
+            if data['configuration']['monitor_output_manually'] == 'true':
+                if data['binmaster']['operating_system'].lower() == 'windows':
+                    # Get the directory of the current script
+                    script_dir = os.path.dirname(os.path.abspath(__file__))
+                    process_slayer_path = os.path.join(script_dir, '/Slayer')
+                    exe_path = os.path.join(process_slayer_path, "binmaster-slayer-win.exe")
+                    if os.path.isfile(exe_path):
+                        process = subprocess.Popen([exe_path], cwd=process_slayer_path, creationflags=subprocess.CREATE_NEW_PROCESS_GROUP,)
+                    else:
+                        print('error not path')
+                else:
+                    process = subprocess.Popen([f"./binmaster-slayer-{data['binmaster']['operating_system']}"], cwd='Slayer/', preexec_fn=os.setsid)
+
+
             on_off[f'{ign}'] = True
             current_users['igns'] = []
             current_users['igns'].append(username)
