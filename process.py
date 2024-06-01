@@ -7,7 +7,8 @@ import discord
 import datetime
 import requests
 import re
-
+dropped_eyes = {}
+dropped_eyes_hourly = {}
 dictionary = {}
 on_off = {}
 async_tasks = {}
@@ -16,6 +17,11 @@ startall_tasks = {}
 with open("config.json") as cd:
     data = json.load(cd)
 le_status = None
+
+for i in data['igns']:
+    dropped_eyes[f'{i}'] = 0
+    dropped_eyes_hourly[f'{i}'] = 0
+
 
 async def process_handler(username, on):
     global le_status
@@ -32,11 +38,15 @@ async def process_handler(username, on):
         config['slayer']['tier'] = data['slayer']['tier'][position]
         config['slayer']['farm_only'] = data['slayer']['autofarm'][position]
         config['slayer']['autoslayer'] = data['slayer']['autoslayer'][position]
-        config['authentication']['binmaster_auth_key'] = data['binmaster']['keys'][position]
         config['external_indicators']['webpage_port'] = data['binmaster']['ports'][position]
         webhook = data['webhooks'][position]
         config['external_indicators']['webhook_url'] = webhook 
-        config['antistaff']['watch_hotbar_slots'] = [1, 2, 3]
+        config['antistaff']['watch_hotbar_slots'] = [1, 2]
+        config['utility']['proxy']['enabled'] = data['proxy']['enabled'][position]
+        config['utility']['proxy']['ip']  = data['proxy']['ips'][position]
+        config['utility']['proxy']['port']  = data['proxy']['ports'][position]
+        config['utility']['proxy']['username']= data['proxy']['usernames'][position]
+        config['utility']['proxy']['password']= data['proxy']['passwords'][position]
         if enabled == True:    
             with open("Slayer/config.json", "w") as dumps:
                 json.dump(config, dumps, indent=4)
@@ -44,17 +54,17 @@ async def process_handler(username, on):
             if data['binmaster']['operating_system'].lower() == 'windows':
                 # Get the directory of the current script
                 script_dir = os.path.dirname(os.path.abspath(__file__))
-
-                # Construct the path to the Slayer directory
-                process_slayer_path = os.path.join(script_dir, '../Slayer')
+                process_slayer_path = os.path.join(script_dir, '/Slayer')
                 exe_path = os.path.join(process_slayer_path, "binmaster-slayer-win.exe")
                 if os.path.isfile(exe_path):
-                    process = subprocess.Popen([exe_path], cwd=process_slayer_path, creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
+                    process = subprocess.Popen([exe_path], cwd=process_slayer_path, creationflags=subprocess.CREATE_NEW_PROCESS_GROUP, stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE, 
+            stdin=subprocess.PIPE, 
+            text=True,)
                 else:
                     print('error not path')
             else:
-                process = subprocess.Popen([f"./binmaster-slayer-{data['binmaster']['operating_system']}"], cwd='Slayer/', 
-                                           preexec_fn=os.setsid)
+                process = subprocess.Popen([f"./binmaster-slayer-{data['binmaster']['operating_system']}"], cwd='Slayer/', stdout=subprocess.PIPE, stderr=subprocess.PIPE,stdin=subprocess.PIPE, text=True, preexec_fn=os.setsid)
             
             task = asyncio.create_task(handle_output(process, ign, webhook))
             async_tasks[f'{ign}'] = task
@@ -174,8 +184,6 @@ async def process_status(channel):
         else:
             emoji = ":yellow_circle:"
         embed.add_field(name=f"{emoji} Status of: ``{accounts[i]}``", value='', inline=False)
-    embed.set_footer(text='Made by interceptic', icon_url='https://cdn.discordapp.com/avatars/1227394151847297148/a_17e8e189d32a91dc7a40f25a1ebcd9c0.webp?size=160')
-    embed.timestamp = datetime.datetime.now()
     return embed
 
 async def message_handler(username, text):
@@ -198,15 +206,17 @@ keywords= (
 critical_keywords = (
     'banned for',
     'phoenix',
-    'hes macroing',
-    'Exception occurred in loader'
+    'hes macroing'
 )
+
+drop_keyword = 'A special Zealot has spawned nearby'
+
 
 async def handle_output(process, username, webhook):
     while True:
-       for line in process.stdout:
-            if any(keyword in line.lower() for keyword in keywords): 
-                stripped = await strip_ansi_codes(line)
+        for line in process.stdout:
+            stripped = await strip_ansi_codes(line)
+            if any(keyword in stripped.lower() for keyword in keywords): 
                 embed = discord.Embed(
                     title = f"{username}",
                     description = f"{stripped}",
@@ -219,9 +229,7 @@ async def handle_output(process, username, webhook):
                 "embeds": [value]
                 }
                 requests.post(webhook, json=le_json)
-                line = None
             if any(critical_keyword in line.lower() for critical_keyword in critical_keywords):
-                stripped = await strip_ansi_codes(line)
                 embed = discord.Embed(
                     title = f"{username}",
                     description = f"{stripped}",
@@ -235,8 +243,12 @@ async def handle_output(process, username, webhook):
                     "content": f"<@{data['bot']['your_id']}>"
                     }
                 requests.post(webhook, json=le_json)
-                line = None
-            await asyncio.sleep(2)
+            if 'A special Zealot has spawned nearby' in line:
+                dropped_eyes[username] += 1
+                print(dropped_eyes)
+                dropped_eyes_hourly[f'{username}'] += 1
+                asyncio.create_task(remove_eye(username))
+            await asyncio.sleep(0.6)
 
 async def killall():
     global enabled
@@ -280,3 +292,8 @@ async def startall():
         task = asyncio.create_task(process_handler(i, True))
         startall_tasks[f'{i}'] = task
         await asyncio.sleep(7)
+
+
+async def remove_eye(username):
+    await asyncio.sleep(3600)
+    dropped_eyes_hourly[f'{username}'] -= 1

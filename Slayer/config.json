@@ -1,0 +1,152 @@
+{
+    "slayer": {
+        "type": "zealot_bruiser",
+        "unofficial_matchers": [],
+        "tier": 1,
+        "autoslayer": false,
+        "farm_only": true,
+        "skip_minibosses": false,
+        "skip_runic": true,
+        "enderman": {
+            "attack_after_summon": true
+        }
+    },
+    "pathing": {
+        "rotatespeed": 5,
+        "pathfinder": "astar",
+        "tp_to_target": false,
+        "tp_distance": 12,
+        "tp_dy": 5,
+        "tp_when_freemotion": true,
+        "tp_delay": 150,
+        "pre_tp_ticks": 3,
+        "aim_dy": -1,
+        "advanced": {
+            "astar": {
+                "path_timeout": 30000,
+                "tick_allocation_to_path": 0.75,
+                "min_time_between_paths": 200
+            },
+            "weights": {
+                "miniboss_cost_multiplier": 0.2,
+                "dy_general_weight": 1.35,
+                "dy_multiplier_trigger": 15,
+                "dy_trigger_multiplier": 1.25,
+                "not_visible_multiplier": 1.5,
+                "max_dy": 20,
+                "max_cost": 150
+            },
+            "decisions": {
+                "freemotion_min_distance": 16,
+                "freemotion_max_dy": 5,
+                "force_freemotion_distance": 4,
+                "min_switch_ticks": 2
+            }
+        }
+    },
+    "slots": {
+        "spawn_phase_weapon": -1,
+        "boss_phase_weapon": -1,
+        "auto_detect_cooldowns": true,
+        "hype_look_down": true,
+        "override_cooldowns": {
+            "spawn_phase_weapon": false,
+            "boss_phase_weapon": false
+        },
+        "activate_range": {
+            "spawn_weapon": false,
+            "main_weapon": false
+        },
+        "advanced": {
+            "ability_ignore_raycast_distance": 8,
+            "freemotion_for_ignore": true
+        }
+    },
+    "antistaff": {
+        "ping_on_potential_check": true,
+        "ignore_check_ping": [
+            "teleport"
+        ],
+        "disabled_checks": [],
+        "disable_macro_on_check": [
+            "rotation",
+            "item_swap"
+        ],
+        "disable_for": 60000,
+        "watch_hotbar_slots": [
+            1,
+            2
+        ],
+        "initial_message_pool": [
+            ""
+        ],
+        "followup_message_pool": [
+            ""
+        ]
+    },
+    "player_utils": {
+        "ping_on_mention": true,
+        "ping_on_accusation": true,
+        "ping_on_follow": true,
+        "ping_on_stare": true,
+        "trigger_follow_ticks": 300,
+        "trigger_stare_ticks": 500,
+        "player_stare_decay_rate": 6,
+        "player_follow_decay_rate": 8,
+        "swap_on_nearby_player_count": 8,
+        "max_considered_distance": 125,
+        "max_considered_dy": 20,
+        "ticks_until_swap": 250,
+        "nearby_player_tick_decay_rate": 5
+    },
+    "utility": {
+        "auto_bazaar": true,
+        "auto_bz_empty_slots": 0,
+        "auto_heal": true,
+        "auto_jerry": true,
+        "beacon_cloak_at": 4800,
+        "proxy": {
+            "enabled": true,
+            "ip": "45.196.41.228",
+            "port": 6602,
+            "username": "ajlpnsvj",
+            "password": "qoz2cicsjirq"
+        }
+    },
+    "carrier_mode": {
+        "enabled": false,
+        "carrier_api_port": 6969,
+        "carrier_auth_key": ""
+    },
+    "carried_mode": {
+        "enabled": false,
+        "attack_boss": false,
+        "carrier_websocket": "",
+        "carrier_auth": ""
+    },
+    "authentication": {
+        "binmaster_auth_key": "",
+        "cache_folder": "./cache/c25g1"
+    },
+    "external_indicators": {
+        "webhook_url": "https://discord.com/api/webhooks/1242317982219112458/34C80StdB9G3hbIitxpCxtcP_6yphZehUZatamPXVSjWz5BKFTAhRUeRz86NkyhXCqHT",
+        "webpage_port": 6969,
+        "webhook_rare_drop_notif_list": [
+            "Summoning Eye",
+            "Warden Heart",
+            "Judgement Core",
+            "Overflux Capacitor",
+            "Crystal Fragment",
+            "Nether Star"
+        ]
+    },
+    "logger": {
+        "colorfulLog": true,
+        "logDate": true,
+        "logChat": true,
+        "logConsole": true,
+        "saveLog": true,
+        "debugMode": false,
+        "dontSaveDebug": true
+    }
+}

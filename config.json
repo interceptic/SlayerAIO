@@ -12,7 +12,7 @@
         "ports": [
             6969
         ],
-        "operating_system": "LINUX/WINDOWS/MACOS"
+        "operating_system": "linux/windows/macos"
     },
     "configuration": {
         "restart_time": 179,

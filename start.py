@@ -1,5 +1,5 @@
 import json
-from modules.bot import bot
+from bot import bot
 
 
 with open("config.json") as config:
