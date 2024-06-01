@@ -1,6 +1,6 @@
 {
     "slayer": {
-        "type": "zealot_bruiser",
+        "type": "zombie/spider/wolf/enderman",
         "unofficial_matchers": [],
         "tier": 1,
         "autoslayer": false,
@@ -107,10 +107,10 @@
         "beacon_cloak_at": 4800,
         "proxy": {
             "enabled": true,
-            "ip": "45.196.41.228",
-            "port": 6602,
-            "username": "ajlpnsvj",
-            "password": "qoz2cicsjirq"
+            "ip": "",
+            "port": ,
+            "username": "",
+            "password": ""
         }
     },
     "carrier_mode": {
@@ -129,7 +129,7 @@
         "cache_folder": "./cache/c25g1"
     },
     "external_indicators": {
-        "webhook_url": "https://discord.com/api/webhooks/1242317982219112458/34C80StdB9G3hbIitxpCxtcP_6yphZehUZatamPXVSjWz5BKFTAhRUeRz86NkyhXCqHT",
+        "webhook_url": "",
         "webpage_port": 6969,
         "webhook_rare_drop_notif_list": [
             "Summoning Eye",
