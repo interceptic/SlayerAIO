@@ -106,7 +106,7 @@
         "auto_jerry": true,
         "beacon_cloak_at": 4800,
         "proxy": {
-            "enabled": true,
+            "enabled": false,
             "ip": "",
             "port": ,
             "username": "",
@@ -126,7 +126,7 @@
     },
     "authentication": {
         "binmaster_auth_key": "",
-        "cache_folder": "./cache/c25g1"
+        "cache_folder": "./cache"
     },
     "external_indicators": {
         "webhook_url": "",
