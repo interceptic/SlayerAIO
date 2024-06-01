@@ -1,6 +1,6 @@
 # Binmaster Controller
-THIS ONLY WORKS FOR THE SLAYER MACRO
-DO NOT DELETE THE CONFIG.JSON FILE IN THE SLAYER FOLDER
+- THIS ONLY WORKS FOR THE SLAYER MACRO
+- DO NOT DELETE THE CONFIG.JSON FILE IN THE SLAYER FOLDER
 
 # Startup
 - Download this from github and open the directory called Slayer (type git clone this repository if on virtual server, you may need to type apt install git)
