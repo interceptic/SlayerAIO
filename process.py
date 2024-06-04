@@ -50,7 +50,7 @@ async def process_handler(username, on):
         if enabled == True:    
             with open("Slayer/config.json", "w") as dumps:
                 json.dump(config, dumps, indent=4)
-            if data['configuration']['monitor_output_manually'] == 'false':
+            if data['configuration']['monitor_output_manually'] is False:
                 if data['binmaster']['operating_system'].lower() == 'windows':
                     # Get the directory of the current script
                     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -67,7 +67,7 @@ async def process_handler(username, on):
                     process = subprocess.Popen([f"./binmaster-slayer-{data['binmaster']['operating_system']}"], cwd='Slayer/', stdout=subprocess.PIPE, stderr=subprocess.PIPE,stdin=subprocess.PIPE, text=True, preexec_fn=os.setsid)
                 task = asyncio.create_task(handle_output(process, ign, webhook))
                 async_tasks[f'{ign}'] = task
-            if data['configuration']['monitor_output_manually'] == 'true':
+            if data['configuration']['monitor_output_manually'] is True:
                 if data['binmaster']['operating_system'].lower() == 'windows':
                     # Get the directory of the current script
                     script_dir = os.path.dirname(os.path.abspath(__file__))
