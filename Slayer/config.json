@@ -125,7 +125,7 @@
         "carrier_auth": ""
     },
     "authentication": {
-        "binmaster_auth_key": "",
+        "binmaster_auth_key": "placeholder",
         "cache_folder": "./cache"
     },
     "external_indicators": {
