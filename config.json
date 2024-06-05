@@ -1,13 +1,13 @@
 {
     "igns": [
-        "YOUR_MINECRAFT_ACCOUNT_HERE"
+        "minecraft_username_here"
     ],
     "webhooks": [
-        "YOUR_DISCORD_WEBHOOK_HERE"
+        "discord_webhook_here"
     ],
     "binmaster": {
         "keys": [
-            "YOUR_BINMASTER_KEY_HERE"
+            "binmaster_key_here"
         ],
         "ports": [
             6969
@@ -20,7 +20,7 @@
         "monitor_output_manually": true
     },
     "bot": {
-        "token": "YOUR_BOT_TOKEN_HERE",
+        "token": "bot_token_here",
         "channel":  123,
         "your_id": 123
     },
@@ -30,7 +30,7 @@
 
         ],
         "boss": [
-            "YOUR_SLAYER_BOSS_HERE"
+            "slayer_boss_here"
         ],
         "autofarm": [
             true
