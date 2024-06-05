@@ -8,7 +8,7 @@
 - Put the binmaster files into the Slayer directory
 
 # Configuration
-- Open the config.json file in the Binmaster_Controller directory.
+- Open the config.json file in the SlayerAIO directory.
 - ``igns`` is your minecraft slayer account, if you have multiple, seperate each one with a comma (for example, "SamMaybe", "Interceptic" - The last should not have a comma)
 - ``webhooks`` is your discord webhook, if you dont know how to make a webhook, go [here](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) if you have multiple, seperate each one with a comma (for example, "webhook1", "webhook2" - The last should not have a comma)
 - ``keys`` put in your binmaster key here. if you have multiple, seperate each one with a comma (for example, "key1", "key2" - The last should not have a comma)
