@@ -27,9 +27,8 @@ async def process_handler(username, on):
     global le_status
     global enabled
     enabled = on
+     print(f'this is here if theres an issue (will help me debug) \n Monitor output manually: {data['configuration']['monitor_output_manually']} operating system: {data['binmaster']['operating_system']}')
     while True:    
-        print(data['configuration']['monitor_output_manually'], data['binmaster']['operating_system'])
-        
         le_status = None
         ign = username
         with open("Slayer/config.json") as conf:
