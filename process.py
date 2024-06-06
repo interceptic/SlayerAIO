@@ -58,7 +58,7 @@ async def process_handler(username, on):
                     exe_path = os.path.join(slayer_dir, 'binmaster-slayer-win.exe') 
                     try:
                         process = subprocess.Popen([exe_path], cwd=slayer_dir, creationflags=subprocess.CREATE_NEW_PROCESS_GROUP, 
-                    tdout=subprocess.PIPE, 
+                    stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, 
                     stdin=subprocess.PIPE, 
                     text=True,)
