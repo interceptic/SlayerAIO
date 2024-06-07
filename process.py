@@ -27,12 +27,14 @@ async def process_handler(username, on):
     global le_status
     global enabled
     enabled = on
-     print(f'this is here if theres an issue (will help me debug) \n Monitor output manually: {data['configuration']['monitor_output_manually']} operating system: {data['binmaster']['operating_system']}')
+    print(f'this is here if theres an issue (will help me debug) \n Monitor output manually: {data['configuration']['monitor_output_manually']} operating system: {data['binmaster']['operating_system']}')
     while True:    
         le_status = None
         ign = username
         with open("Slayer/config.json") as conf:
             config = json.load(conf)
+        with open("Slayer/lconfig.json", "w") as store:
+             stored = json.load(store)
         position = data['igns'].index(f'{ign}')
         config['authentication']['cache_folder'] = f"./cache/{ign}"
         config['slayer']['type'] = data['slayer']['boss'][position]
@@ -48,9 +50,13 @@ async def process_handler(username, on):
         config['utility']['proxy']['port']  = data['proxy']['ports'][position]
         config['utility']['proxy']['username']= data['proxy']['usernames'][position]
         config['utility']['proxy']['password']= data['proxy']['passwords'][position]
+        stored['storedKey'] = data['binmaster']['keys'][position]
+        config['authentication']['binmaster_auth_key'] = data['binmaster']['keys'][position]
         if enabled == True:    
             with open("Slayer/config.json", "w") as dumps:
                 json.dump(config, dumps, indent=4)
+            with open("Slayer/lconfig.json", "w") as dumped:
+                json.dump(stored, dumped, indent=4)
             if data['configuration']['monitor_output_manually'] is False:
                 if data['binmaster']['operating_system'].lower() == 'windows':
                     slayer_dir = os.path.join(os.path.dirname(__file__), 'Slayer')
