@@ -33,7 +33,7 @@ async def process_handler(username, on):
         ign = username
         with open("Slayer/config.json") as conf:
             config = json.load(conf)
-        with open("Slayer/lconfig.json", "w") as store:
+        with open("Slayer/lconfig.json") as store:
              stored = json.load(store)
         position = data['igns'].index(f'{ign}')
         config['authentication']['cache_folder'] = f"./cache/{ign}"
