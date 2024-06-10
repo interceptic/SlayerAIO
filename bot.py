@@ -11,7 +11,7 @@ message_id = None
 timeout_period = 0
 intents = discord.Intents.default()
 intents.members = True 
-bot = commands.Bot(intents=intents, slash_command_prefix='/')  
+bot = commands.Bot(command_prefix='!',intents=intents, slash_command_prefix='/')  
 
 with open("config.json") as config:
     data = json.load(config)

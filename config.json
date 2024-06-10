@@ -20,7 +20,7 @@
         "monitor_output_manually": true
     },
     "bot": {
-        "token": "bot_token_here",
+        "token": "",
         "channel":  123,
         "your_id": 123
     },
