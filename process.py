@@ -260,7 +260,7 @@ async def handle_output(process, username, webhook):
                     "content": f"<@{data['bot']['your_id']}>"
                     }
                 requests.post(webhook, json=le_json)
-            if 'A special Zealot has spawned nearby' in line:
+            if 'A special Zealot has spawned nearby'.lower() in stripped.lower():
                 dropped_eyes[username] += 1
                 print(dropped_eyes)
                 dropped_eyes_hourly[f'{username}'] += 1
