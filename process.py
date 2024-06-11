@@ -260,12 +260,12 @@ async def handle_output(process, username, webhook):
                     "content": f"<@{data['bot']['your_id']}>"
                     }
                 requests.post(webhook, json=le_json)
-            if 'A special Zealot has spawned nearby'.lower() in stripped.lower():
+            if drop_keyword.lower() in stripped.lower():
                 dropped_eyes[username] += 1
                 print(dropped_eyes)
                 dropped_eyes_hourly[f'{username}'] += 1
                 asyncio.create_task(remove_eye(username))
-            await asyncio.sleep(0.6)
+            await asyncio.sleep(0.3)
 
 async def killall():
     global enabled
